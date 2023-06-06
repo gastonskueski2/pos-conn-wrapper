@@ -30,8 +30,8 @@ def get_checksum(key, message):
 # Function to set headers
 def set_headers(bdy):
     # Calculate checksum
-    checksum_str = "pass"
-    # checksum_str = get_checksum(API_KEY, bdy)
+    # checksum_str = "pass"
+    checksum_str = get_checksum(API_KEY, bdy)
 
     # build headers
     headers = {
@@ -40,7 +40,7 @@ def set_headers(bdy):
         "Key": API_KEY,
         "Guest-Origin": GUEST_ORIGIN,
         "Checksum": checksum_str,
-        "Environment": ENV_STAGING              # remove this line for production
+        "Environment": ENV_STAGING   # remove this line for production
     }
 
     # return headers
