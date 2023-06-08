@@ -7,8 +7,10 @@ import posconn
 ERROR_INVALID_REQUEST_BODY = {'status': 'failure', 'message': 'POS wrapper: invalid request body', 'code': '100-INVALID_BODY'}
 ERROR_CALL_POS_CONN = {'status': 'failure', 'message': 'POS wrapper: error calling POS connector', 'code': '100-INTERNAL_ERROR'}
 
+
 # Flask app
 app = Flask(__name__)
+
 
 # Set Routes
 # Healthcheck

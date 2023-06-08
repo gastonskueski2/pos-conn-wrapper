@@ -3,16 +3,15 @@ import requests, json
 import hashlib, hmac, base64
 
 # Constants
-API_KEY = "3ceb0d78-f175-4616-a4b2-e7fd23419262"
+API_KEY = "PLACE API KEY HERE"
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
 GUEST_ORIGIN = "POS-CONNECTOR / 1.0 python"
-URL_POS_CONN = "https://kh36t6agy9.execute-api.us-east-1.amazonaws.com/staging"
+URL_POS_CONN = "PLACE POS CONNECTOR ROOT URL HERE"
 URL_PAYMENT = "/pos-connector/payment"
 URL_PAYMENT_STATUS = "/pos-connector/payment/status"
 URL_PAYMENT_REFUND = "/pos-connector/payment/refund"
 ENV_STAGING = "staging"
 ENV_PRODUCTION = "production"
-CHECKSUM = "pass"
 
 
 # Function to set headers
