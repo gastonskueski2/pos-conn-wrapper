@@ -1,6 +1,6 @@
 # Description: POS Connector calls
 import requests, json
-import hashlib, hmac
+import hashlib, hmac, base64
 
 # Constants
 API_KEY = "3ceb0d78-f175-4616-a4b2-e7fd23419262"
@@ -12,26 +12,24 @@ URL_PAYMENT_STATUS = "/pos-connector/payment/status"
 URL_PAYMENT_REFUND = "/pos-connector/payment/refund"
 ENV_STAGING = "staging"
 ENV_PRODUCTION = "production"
+CHECKSUM = "pass"
 
 
-# Function to generate checksum
-def get_checksum(key, message):
-    # convert to bytes
-    bkey = bytes(key, 'utf-8')
-    bmsg = bytes(message, 'utf-8')
+# Function to set headers
+def get_checksum(bdy):
+    data = bytes(bdy, 'utf-8')
+    secret = bytes(API_KEY, 'utf-8')
 
-    # create a new HMAC object
-    hash = hmac.new(bkey, bmsg, hashlib.sha256)
+    hash = hmac.new(secret, data, hashlib.sha256)
 
     # to lowercase hexits
     return hash.hexdigest()
 
 
+
 # Function to set headers
 def set_headers(bdy):
-    # Calculate checksum
-    # checksum_str = "pass"
-    checksum_str = get_checksum(API_KEY, bdy)
+    checksum = get_checksum(bdy)
 
     # build headers
     headers = {
@@ -39,8 +37,8 @@ def set_headers(bdy):
         "User-Agent": USER_AGENT,
         "Key": API_KEY,
         "Guest-Origin": GUEST_ORIGIN,
-        "Checksum": checksum_str,
-        "Environment": ENV_STAGING   # remove this line for production
+        "Checksum": checksum,
+        "Environment": ENV_STAGING
     }
 
     # return headers
