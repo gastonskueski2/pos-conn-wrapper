@@ -28,7 +28,9 @@ def get_checksum(bdy):
 
 # Function to set headers
 def set_headers(bdy):
-    checksum = get_checksum(bdy)
+    # get checksum
+    checksum = "pass"
+    # checksum = get_checksum(bdy)  # uncomment this line to use checksum as validation
 
     # build headers
     headers = {
